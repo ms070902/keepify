@@ -90,7 +90,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         isLoading: true,
         loadingText: 'Please wait while I log you in',
       ));
-      await Future.delayed(const Duration(seconds: 2));
+      // await Future.delayed(const Duration(seconds: 2));
       final email = event.email;
       final password = event.password;
       try {

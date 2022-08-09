@@ -39,7 +39,7 @@ class _TextRecognitionViewState extends State<TextRecognitionView> {
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.BOTTOM,
                     timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Colors.lightBlue[200],
                     fontSize: 16.0);
               },
               icon: const Icon(Icons.copy),
@@ -61,33 +61,45 @@ class _TextRecognitionViewState extends State<TextRecognitionView> {
         body: SingleChildScrollView(
           reverse: true,
           padding: const EdgeInsets.all(30),
-          child: Column(
-            children: [
-              const Text(
-                  'Pick image from gallery or use camera to extract text!'),
-              if (textScanning) const CircularProgressIndicator(),
-              if (!textScanning && image == null)
-                Container(
-                  width: 450,
-                  height: 300,
-                  color: Colors.grey[300],
+          child: Container(
+            alignment: Alignment.center,
+            child: Column(
+              children: [
+                if (textScanning) const CircularProgressIndicator(),
+                if (!textScanning && image == null)
+                  Container(
+                    alignment: Alignment.center,
+                    width: 450,
+                    height: 300,
+                    color: Colors.grey[300],
+                    child: const Text(
+                      'Pick image from gallery or use camera to extract text!',
+                      style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                if (image != null)
+                  Image.file(
+                    File(image!.path),
+                    width: 450,
+                    height: 300,
+                  ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    scannedText,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: null,
+                  ),
                 ),
-              if (image != null)
-                Image.file(
-                  File(image!.path),
-                  width: 450,
-                  height: 300,
-                ),
-              Text(
-                scannedText,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.bold,
-                ),
-                maxLines: null,
-              ),
-            ],
+              ],
+            ),
           ),
         ));
   }

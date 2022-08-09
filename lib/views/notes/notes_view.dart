@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mynotes/services/auth/auth_service.dart';
 import 'package:mynotes/services/auth/bloc/auth_bloc.dart';
 import 'package:mynotes/services/auth/bloc/auth_event.dart';
+import 'package:mynotes/utilities/dialogs/loading_dialog.dart';
 import 'package:mynotes/views/notes/notes_list_view.dart';
 import '../../constants/routes.dart';
 import '../../enums/menu_actions.dart';
@@ -32,6 +33,7 @@ class _NotesViewState extends State<NotesView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          elevation: 0.0,
           title: const Text('My Notes'),
           actions: [
             IconButton(

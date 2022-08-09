@@ -55,74 +55,117 @@ class _RegisterViewState extends State<RegisterView> {
         appBar: AppBar(
           title: const Text('Register'),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextField(
-                controller: _email,
-                enableSuggestions: false,
-                autocorrect: false,
-                autofocus: true,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  hintText: 'email',
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(10, 50, 10, 20),
+                  child: Image(
+                    image: AssetImage('assets/icon/icon.png'),
+                    width: 100,
+                    height: 100,
+                  ),
                 ),
-              ),
-              TextField(
-                controller: _password,
-                obscureText: true,
-                enableSuggestions: false,
-                autocorrect: false,
-                decoration: const InputDecoration(
-                  hintText: 'Password',
-                ),
-              ),
-              Center(
-                child: Column(
-                  children: [
-                    TextButton(
-                      onPressed: () async {
-                        final email = _email.text;
-                        final password = _password.text;
-                        context.read<AuthBloc>().add(
-                              AuthEventRegister(email, password),
-                            );
-                        //Without bloc
-                        // try {
-                        //   await AuthService.firebase().createUser(
-                        //       email: email, password: password
-                        //   );
-                        //   AuthService.firebase().sendEmailVerification();
-                        //   Navigator.of(context).pushNamed(verifyEmailRoute);
-                        // } on WeakPasswordAuthException {
-                        //   await showErrorDialog(context, 'Weak Password');
-                        // } on EmailAlreadyInUseAuthException {
-                        //   await showErrorDialog(context, 'Email is already in use');
-                        // } on InvalidEmailAuthException {
-                        //   await showErrorDialog(
-                        //       context, 'This is an invalid email address');
-                        // } on GenericAuthException {
-                        //   await showErrorDialog(context, 'Registration failed ');
-                        // }
-                      },
-                      child: const Text('Register'),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextField(
+                    controller: _email,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    autofocus: true,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration:  InputDecoration(
+                      labelText: 'email',
+                      filled: true,
+                      fillColor: Colors.cyan[50],
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
-                    TextButton(
-                        onPressed: () {
-                          context.read<AuthBloc>().add(
-                                const AuthEventLogOut(),
-                              );
-                          //Without bloc
-                          // Navigator.of(context)
-                          //     .pushNamedAndRemoveUntil(loginRoute, (route) => false);
-                        },
-                        child: const Text('Already registered? Login here!'))
-                  ],
+                  ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextField(
+                    controller: _password,
+                    obscureText: true,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    decoration:  InputDecoration(
+                      labelText: 'Password',
+                      filled: true,
+                      fillColor: Colors.cyan[50],
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextButton(
+                          onPressed: () async {
+                            final email = _email.text;
+                            final password = _password.text;
+                            context.read<AuthBloc>().add(
+                                  AuthEventRegister(email, password),
+                                );
+                            //Without bloc
+                            // try {
+                            //   await AuthService.firebase().createUser(
+                            //       email: email, password: password
+                            //   );
+                            //   AuthService.firebase().sendEmailVerification();
+                            //   Navigator.of(context).pushNamed(verifyEmailRoute);
+                            // } on WeakPasswordAuthException {
+                            //   await showErrorDialog(context, 'Weak Password');
+                            // } on EmailAlreadyInUseAuthException {
+                            //   await showErrorDialog(context, 'Email is already in use');
+                            // } on InvalidEmailAuthException {
+                            //   await showErrorDialog(
+                            //       context, 'This is an invalid email address');
+                            // } on GenericAuthException {
+                            //   await showErrorDialog(context, 'Registration failed ');
+                            // }
+                          },
+                          style: TextButton.styleFrom(
+                            primary: Colors.white,
+                            backgroundColor: Colors.lightBlue[200],
+                            elevation: 4.5,
+                            shadowColor: Colors.lightBlue[50],
+                          ),
+                          child: const Text('Register'),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextButton(
+                            onPressed: () {
+                              context.read<AuthBloc>().add(
+                                    const AuthEventLogOut(),
+                                  );
+                              //Without bloc
+                              // Navigator.of(context)
+                              //     .pushNamedAndRemoveUntil(loginRoute, (route) => false);
+                            },
+                            style: TextButton.styleFrom(
+                              primary: Colors.lightBlue,
+                            ),
+                            child: const Text('Already registered? Login here!')),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
