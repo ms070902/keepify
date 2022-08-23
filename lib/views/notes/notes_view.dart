@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mynotes/extentions/buildcontext/loc.dart';
 import 'package:mynotes/services/auth/auth_service.dart';
 import 'package:mynotes/services/auth/bloc/auth_bloc.dart';
 import 'package:mynotes/services/auth/bloc/auth_event.dart';
-import 'package:mynotes/utilities/dialogs/loading_dialog.dart';
 import 'package:mynotes/views/notes/notes_list_view.dart';
 import '../../constants/routes.dart';
 import '../../enums/menu_actions.dart';
@@ -64,10 +64,10 @@ class _NotesViewState extends State<NotesView> {
                   break;
               }
             }, itemBuilder: (context) {
-              return const [
+              return [
                 PopupMenuItem(
                   value: MenuAction.logout,
-                  child: const Text('Log out'),
+                  child: Text(context.loc.logout_button),
                 )
               ];
             })

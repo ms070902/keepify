@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mynotes/extentions/buildcontext/loc.dart';
 
 class TextRecognitionView extends StatefulWidget {
   const TextRecognitionView({Key? key}) : super(key: key);
@@ -29,13 +30,13 @@ class _TextRecognitionViewState extends State<TextRecognitionView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Text Recognition'),
+          title: Text(context.loc.text_recognition_view_placeholder),
           actions: [
             IconButton(
               onPressed: () {
                 FlutterClipboard.copy(scannedText);
                 Fluttertoast.showToast(
-                    msg: 'Copied',
+                    msg: context.loc.text_recognition_view_copy,
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.BOTTOM,
                     timeInSecForIosWeb: 1,
@@ -72,8 +73,8 @@ class _TextRecognitionViewState extends State<TextRecognitionView> {
                     width: 450,
                     height: 300,
                     color: Colors.grey[300],
-                    child: const Text(
-                      'Pick image from gallery or use camera to extract text!',
+                    child: Text(
+                      context.loc.text_recognition_view_pick,
                       style: TextStyle(
                         fontStyle: FontStyle.italic,
                         fontWeight: FontWeight.bold,
@@ -116,7 +117,7 @@ class _TextRecognitionViewState extends State<TextRecognitionView> {
     } catch (e) {
       textScanning = false;
       image = null;
-      scannedText = 'An error occurred while scanning.';
+      scannedText = context.loc.text_recognition_view_error_msg;
       setState(() {});
     }
   }

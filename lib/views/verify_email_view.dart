@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mynotes/extentions/buildcontext/loc.dart';
 import 'package:mynotes/services/auth/bloc/auth_event.dart';
 
 import '../services/auth/bloc/auth_bloc.dart';
@@ -17,21 +18,14 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Verify email'),
+        title: Text(context.loc.verify_email),
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 50, 20, 10),
         child: Column(
           children: [
-            const Text(
-              "We've sent you an email verification. Please open it to verify your account.",
-              style: TextStyle(
-                fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const Text(
-              "If you haven't received a verification email yet, press the button below else press Restart button to continue login.",
+            Text(
+             context.loc.verify_email_view_prompt,
               style: TextStyle(
                 fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.bold,
@@ -48,7 +42,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
                 style: TextButton.styleFrom(
                   primary: Colors.lightBlue,
                 ),
-                child: const Text('Resend email verification')),
+                child: Text(context.loc.verify_email_send_email_verification)),
             TextButton(
               onPressed: () async {
                 context.read<AuthBloc>().add(
@@ -67,7 +61,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
                 elevation: 4.5,
                 shadowColor: Colors.lightBlue[50],
               ),
-              child: const Text('Restart'),
+              child: Text(context.loc.restart),
             ),
           ],
         ),
