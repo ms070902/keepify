@@ -10,9 +10,9 @@ https://user-images.githubusercontent.com/85797145/218331316-be97dc76-28d2-4760-
 </p>
 
 ## Table of Contents
-* [Overview]
-* [Technologies Used]
-* [Author]
+* [Overview](https://github.com/ms070902/keepify/blob/main/README.md#overview)
+* [Technologies Used](https://github.com/ms070902/keepify/blob/main/README.md#technologies-used)
+* [Author](https://github.com/ms070902/keepify/blob/main/README.md#author)
 
 ## Overview
 * It is a note taking application build in Flutter(Bloc State Management System).
